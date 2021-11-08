@@ -5,6 +5,9 @@ test1012::test1012(QWidget *parent)
 {
     ui.setupUi(this);
 
+	// 수정수정수정수정 
+	// 조찬익 바보 
+
 	//connect(ui.Button1, SIGNAL(clicked()), this, SLOT(Button1()));
 
 	QStringList tableHeader;
