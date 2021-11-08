@@ -8,6 +8,7 @@ test1012::test1012(QWidget *parent)
 	// 수정수정수정수정 광렬이 바보  ㅋㅋㅋ
 	// 조찬익 바보 
         // 해도리 천재
+	// 
 
 
 	//connect(ui.Button1, SIGNAL(clicked()), this, SLOT(Button1()));
