@@ -5,7 +5,7 @@ test1012::test1012(QWidget *parent)
 {
     ui.setupUi(this);
 
-	// 수정수정수정수정 광렬이 바보 
+	// 수정수정수정수정 광렬이 바보  ㅋㅋㅋ
 	// 조찬익 바보 
 
 	//connect(ui.Button1, SIGNAL(clicked()), this, SLOT(Button1()));
