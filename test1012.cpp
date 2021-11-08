@@ -5,21 +5,23 @@ test1012::test1012(QWidget *parent)
 {
     ui.setupUi(this);
 
-	// ¼öÁ¤¼öÁ¤¼öÁ¤¼öÁ¤ ±¤·ÄÀÌ ¹Ùº¸  ¤»¤»¤»
-	// Á¶ÂùÀÍ ¹Ùº¸ 
+	// ìˆ˜ì •ìˆ˜ì •ìˆ˜ì •ìˆ˜ì • ê´‘ë ¬ì´ ë°”ë³´  ã…‹ã…‹ã…‹
+	// ì¡°ì°¬ìµ ë°”ë³´ 
+        // í•´ë„ë¦¬ ì²œì¬
+
 
 	//connect(ui.Button1, SIGNAL(clicked()), this, SLOT(Button1()));
 
 	QStringList tableHeader;
 	tableHeader << "Menu number" << "Menu Name" << "Menu Price";
-	ui.tableWidget1->setColumnCount(3); // ColumnÀ» 3°³·Î ¼³Á¤
-	ui.tableWidget1->setHorizontalHeaderLabels(tableHeader); // Table Header ¼³Á¤
-	//ui.tableWidget1->insertRow(ui.tableWidget1->rowCount()); // Row¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	ui.tableWidget1->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);  // ÄÃ·³ »çÀÌÁî ÀÚµ¿ Á¶Á¤
-	ui.tableWidget1->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);    // ÄÃ·³ »çÀÌÁî ÀÚµ¿ Á¶Á¤
+	ui.tableWidget1->setColumnCount(3); // Columnì„ 3ê°œë¡œ ì„¤ì •
+	ui.tableWidget1->setHorizontalHeaderLabels(tableHeader); // Table Header ì„¤ì •
+	//ui.tableWidget1->insertRow(ui.tableWidget1->rowCount()); // Rowë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	ui.tableWidget1->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);  // ì»¬ëŸ¼ ì‚¬ì´ì¦ˆ ìë™ ì¡°ì •
+	ui.tableWidget1->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);    // ì»¬ëŸ¼ ì‚¬ì´ì¦ˆ ìë™ ì¡°ì •
 	for (int i = 0; i < 6; i++) {
 		//ui.tableWidget_toast->insertRow(i);
-		ui.tableWidget1->insertRow(ui.tableWidget1->rowCount()); // Row¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		ui.tableWidget1->insertRow(ui.tableWidget1->rowCount()); // Rowë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 		ui.tableWidget1->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
 		ui.tableWidget1->setItem(i, 1, new QTableWidgetItem(QString::fromStdString("a")));
 		ui.tableWidget1->setItem(i, 2, new QTableWidgetItem(QString::number(i+10)));
@@ -27,8 +29,8 @@ test1012::test1012(QWidget *parent)
 
 	//QStringList tableHeader2;
 	//tableHeader2 << "Menu number" << "Menu Name" << "Menu Price";
-	//ui.listView1->setColumnCount(3); // ColumnÀ» 3°³·Î ¼³Á¤
-	//ui.listView1->setHorizontalHeaderLabels(tableHeader2); // Table Header ¼³Á¤
+	//ui.listView1->setColumnCount(3); // Columnì„ 3ê°œë¡œ ì„¤ì •
+	//ui.listView1->setHorizontalHeaderLabels(tableHeader2); // Table Header ì„¤ì •
 	//ui.listView1.InsertColumn(0, "menu name");
 	//int nItem;
 
@@ -53,7 +55,7 @@ test1012::test1012(QWidget *parent)
 
 
 	// test : list widget /////////////////////////////
-	// db¿¡¼­ ¸Ş´º Á¤º¸, ½ÄÀÚÀç Á¤º¸ °¡Á®¿À±â 
+	// dbì—ì„œ ë©”ë‰´ ì •ë³´, ì‹ìì¬ ì •ë³´ ê°€ì ¸ì˜¤ê¸° 
 	MYSQL* conn;
 	MYSQL* conn_result;
 	unsigned int timeout_sec = 1;
@@ -70,7 +72,7 @@ test1012::test1012(QWidget *parent)
 		// 1. select main /////////////
 		MYSQL_RES* result;
 		MYSQL_ROW row;
-		const char* query_main = "SELECT * FROM main"; // ¸Ş´º ¹øÈ£, ÀÌ¸§, °¡°İ Á¤º¸ °¡Á®¿À±â-> º¯¼ö¿¡ ÀúÀå
+		const char* query_main = "SELECT * FROM main"; // ë©”ë‰´ ë²ˆí˜¸, ì´ë¦„, ê°€ê²© ì •ë³´ ê°€ì ¸ì˜¤ê¸°-> ë³€ìˆ˜ì— ì €ì¥
 
 		if (mysql_query(conn_result, query_main)) {    // Send Query
 			cout << "SELECT(main) Fail" << endl;
@@ -79,31 +81,31 @@ test1012::test1012(QWidget *parent)
 		int i = 0;
 		int ii = 0;
 		int iii = 0;
-		while (row = mysql_fetch_row(result)) { // ¸ğµç ·¹ÄÚµå Å½»ö -> Çà ´ÜÀ§·Î ²÷´Â°Ô ¾Æ´Ï°í °Á ¸ğµç ÇàÀ» Å½»öÇÔ
-												  // Áï ²÷¾î¼­ ÆÇ´ÜÇÏ´Â ±âÁØÀÌ ÇÊ¿äÇÔ 
-			if (row[0]) {   // 1¿­¸¸ ²÷¾î¼­ ÆÇ´Ü -> while¹® ¾È¿¡ ÀÖÀ¸¹Ç·Î 1¿­¿¡¼­ Çà ´ÜÀ§·Î Å½»ö
+		while (row = mysql_fetch_row(result)) { // ëª¨ë“  ë ˆì½”ë“œ íƒìƒ‰ -> í–‰ ë‹¨ìœ„ë¡œ ëŠëŠ”ê²Œ ì•„ë‹ˆê³  ê± ëª¨ë“  í–‰ì„ íƒìƒ‰í•¨
+												  // ì¦‰ ëŠì–´ì„œ íŒë‹¨í•˜ëŠ” ê¸°ì¤€ì´ í•„ìš”í•¨ 
+			if (row[0]) {   // 1ì—´ë§Œ ëŠì–´ì„œ íŒë‹¨ -> whileë¬¸ ì•ˆì— ìˆìœ¼ë¯€ë¡œ 1ì—´ì—ì„œ í–‰ ë‹¨ìœ„ë¡œ íƒìƒ‰
 				menuNumber[i] = stoi(row[0]);
 				cout << "row[0] : " << row[0] << "\n";
 				cout << "menuNumber : " << menuNumber[i] << "\n";
 				i++;
 			}
-			if (row[1]) {   // 2¿­¸¸ ²÷¾î¼­ ÆÇ´Ü -> while¹® ¾È¿¡ ÀÖÀ¸¹Ç·Î 2¿­¿¡¼­ Çà ´ÜÀ§·Î Å½»ö
+			if (row[1]) {   // 2ì—´ë§Œ ëŠì–´ì„œ íŒë‹¨ -> whileë¬¸ ì•ˆì— ìˆìœ¼ë¯€ë¡œ 2ì—´ì—ì„œ í–‰ ë‹¨ìœ„ë¡œ íƒìƒ‰
 				menuName[ii] = row[1];
 				cout << "row[1] : " << row[1] << "\n";
 				cout << "menuName : " << menuName[ii] << "\n";
 				ii++;
 			}
-			if (row[4]) {   // 5¿­¸¸ ²÷¾î¼­ ÆÇ´Ü -> while¹® ¾È¿¡ ÀÖÀ¸¹Ç·Î 5¿­¿¡¼­ Çà ´ÜÀ§·Î Å½»ö
+			if (row[4]) {   // 5ì—´ë§Œ ëŠì–´ì„œ íŒë‹¨ -> whileë¬¸ ì•ˆì— ìˆìœ¼ë¯€ë¡œ 5ì—´ì—ì„œ í–‰ ë‹¨ìœ„ë¡œ íƒìƒ‰
 				menuPrice[iii] = stoi(row[4]);
 				cout << "row[4] : " << row[4] << "\n";
 				cout << "menuPrice : " << menuPrice[iii] << "\n";
 				iii++;
 			}
 		}
-		mysql_free_result(result);       // result¿¡ ÇÒ´çµÈ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù.
+		mysql_free_result(result);       // resultì— í• ë‹¹ëœ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
 
 		// 2. select stock /////////////////////////////////
-		const char* query_stock = "SELECT cquantity, tpcs, tquantity FROM stock"; // ½ÄÀÚÀç ±âº» ³¹°³(°íÁ¤), Àç°í, ÃÑ ³¹°³ Á¤º¸ °¡Á®¿À±â-> º¯¼ö¿¡ ÀúÀå
+		const char* query_stock = "SELECT cquantity, tpcs, tquantity FROM stock"; // ì‹ìì¬ ê¸°ë³¸ ë‚±ê°œ(ê³ ì •), ì¬ê³ , ì´ ë‚±ê°œ ì •ë³´ ê°€ì ¸ì˜¤ê¸°-> ë³€ìˆ˜ì— ì €ì¥
 		if (mysql_query(conn_result, query_stock)) { // Send Query
 			cout << "SELECT(stock) Fail" << endl;
 		}
@@ -111,27 +113,27 @@ test1012::test1012(QWidget *parent)
 		int j = 0;
 		int jj = 0;
 		int jjj = 0;
-		while (row = mysql_fetch_row(result)) { // ¸ğµç ·¹ÄÚµå Å½»ö
-			if (row[0]) {                           // 1¿­¸¸ ²÷¾î¼­ ÆÇ´Ü
+		while (row = mysql_fetch_row(result)) { // ëª¨ë“  ë ˆì½”ë“œ íƒìƒ‰
+			if (row[0]) {                           // 1ì—´ë§Œ ëŠì–´ì„œ íŒë‹¨
 				resourceCquantity[j] = stoi(row[0]);
 				cout << "row[0] : " << row[0];
 				cout << "resourceCquantity : " << resourceCquantity[j] << "\n";
 				j++;
 			}
-			if (row[1]) {                           // 2¿­¸¸ ²÷¾î¼­ ÆÇ´Ü  
+			if (row[1]) {                           // 2ì—´ë§Œ ëŠì–´ì„œ íŒë‹¨  
 				resourceTpcs[jj] = stoi(row[1]);
 				cout << "row[1] : " << row[1];
 				cout << "resourceTpcs : " << resourceTpcs[jj] << "\n";
 				jj++;
 			}
-			if (row[2]) {                          // 3¿­¸¸ ²÷¾î¼­ ÆÇ´Ü
+			if (row[2]) {                          // 3ì—´ë§Œ ëŠì–´ì„œ íŒë‹¨
 				resourceTquantity[jjj] = stoi(row[2]);
 				cout << "row[2] : " << row[2];
 				cout << "resourceTquantity : " << resourceTquantity[jjj] << "\n";
 				jjj++;
 			}
 		}
-		mysql_free_result(result);       // result¿¡ ÇÒ´çµÈ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù.
+		mysql_free_result(result);       // resultì— í• ë‹¹ëœ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
 		mysql_close(conn);
 	}
 	//return;
@@ -165,10 +167,10 @@ test1012::test1012(QWidget *parent)
 	cout << price[0] + 1;*/
 
 
-	///db ¿¬µ¿       /////// menu name, menu price º¯¼ö¿¡ ÀúÀå 
+	///db ì—°ë™       /////// menu name, menu price ë³€ìˆ˜ì— ì €ì¥ 
 	//MYSQL conn;
 	//MYSQL* conn_result;
-	//int query_state;      // ¿Ö¿Ö¿Ö¿Ö¿Ö¿Ö¿Ö¿Ö¿Ö stringÀ¸·Î ¼±¾ğÇÏ¸é ¾ÈµÇ³Ä°í....¤Ğ
+	//int query_state;      // ì™œì™œì™œì™œì™œì™œì™œì™œì™œ stringìœ¼ë¡œ ì„ ì–¸í•˜ë©´ ì•ˆë˜ëƒê³ ....ã… 
 	//unsigned int timeout_sec = 1;
 
 	//mysql_init(&conn);
@@ -183,16 +185,16 @@ test1012::test1012(QWidget *parent)
 
 
 	//	// 1. insert sales /////////////
-	//	//const char* query_main = "insert into main (prizename, regdate, price) values(name[0].toStdString(), currentDate().toStdString(), stoi(price[0]))";    // ¸Ş´º ÀÌ¸§, °¡°İ Á¤º¸ ºÒ·¯¿À±â-> º¯¼ö¿¡ ÀúÀå
+	//	//const char* query_main = "insert into main (prizename, regdate, price) values(name[0].toStdString(), currentDate().toStdString(), stoi(price[0]))";    // ë©”ë‰´ ì´ë¦„, ê°€ê²© ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°-> ë³€ìˆ˜ì— ì €ì¥
 	//	string query_sales = "insert into sales (prizename, price, pcs, agg, saldate, saltime) values('"+name[0]+"', '" + p[0] + "', '" + q[0] + "', '" + pq[0] + "', '"+currentDate()+"', '" + currenttime() + "')";
 	//	//string queryz = "UPDATE stock SET tpcs= '" + stgro + "',tquantity='" + tity + "'  where ingre = '" + stgrew + "' ";
 	//	//const char* query2 = query_sales.c_str();
 	//	query_state = mysql_query(conn_result, query_sales.c_str());
-	//	if (query_state) // ½ÇÆĞ ½Ã -1
+	//	if (query_state) // ì‹¤íŒ¨ ì‹œ -1
 	//	{
 	//		cout << "Query Error : " << mysql_error(&conn) << endl;
 	//		cout << "Query_state : " << mysql_query(conn_result, query_sales.c_str()) << endl;
-	//		return; // ¿¬°áÀÌ ½ÇÆĞ ½Ã ¿¹¿ÜÃ³¸®(ÇÔ¼ö Á¾·á)
+	//		return; // ì—°ê²°ì´ ì‹¤íŒ¨ ì‹œ ì˜ˆì™¸ì²˜ë¦¬(í•¨ìˆ˜ ì¢…ë£Œ)
 	//	}
 	//	// Send Query
 	//	/*if (mysql_query(conn_result, query_sales.c_str())) {
@@ -212,14 +214,14 @@ test1012::test1012(QWidget *parent)
 	//MsgBox.setText("Please select the menu and\ninput the revised price.");
 	//MsgBox.layout()->addWidget(combo1);
 	//MsgBox.layout()->addWidget(lineEdit1);
-	////lineEdit1->setText(0);    // lineEditÀÇ ±âº» Ãâ·Â°ª 0
+	////lineEdit1->setText(0);    // lineEditì˜ ê¸°ë³¸ ì¶œë ¥ê°’ 0
 	//MsgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
 	//MsgBox.setDefaultButton(QMessageBox::Yes);
 	//for (int j = 0; j < 10; j++) {
 	//	combo1->addItem(QString::fromStdString(name[j]));
 	//}
 	////cc = QString::number(combo1->currentIndex());
-	////cc = combo1->currentIndex().toInt();    // combobax´Â string
+	////cc = combo1->currentIndex().toInt();    // combobaxëŠ” string
 	////string cc = combo1->currentIndex();
 	//int cc = combo1->currentIndex();
 	//cout << "cc : " << cc << "\n";
